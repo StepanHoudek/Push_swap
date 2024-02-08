@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_end.c                                    :+:      :+:    :+:   */
+/*   ft_lstdeallocate.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 13:14:21 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 14:34:20 by shoudek          ###   ########.fr       */
+/*   Created: 2024/02/08 13:17:55 by shoudek           #+#    #+#             */
+/*   Updated: 2024/02/08 14:57:15 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	lstadd_end(t_struct **root, int value)
+void	ft_lstdeallocate(t_struct **root)
 {
-	t_struct	*new_node;
 	t_struct	*curr;
+	t_struct	*next;
 
-	new_node = malloc(sizeof(t_struct));
-	if (!new_node)
-		return ;
-	new_node->x = value;
-	new_node->next = NULL;
-	if (*root == NULL)
-	{
-		*root = new_node;
-		return ;
-	}
 	curr = *root;
-	while (curr->next != NULL)
-		curr = curr->next;
-	curr->next = new_node;
+	while (curr != NULL)
+	{
+		next = curr->next;
+		free(curr);
+		curr = next;
+	}
+	*root = NULL;
 	return ;
 }

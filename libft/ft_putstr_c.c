@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdeallocate.c                                 :+:      :+:    :+:   */
+/*   ft_putstr_c.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 13:17:55 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 14:19:18 by shoudek          ###   ########.fr       */
+/*   Created: 2024/01/16 14:22:54 by shoudek           #+#    #+#             */
+/*   Updated: 2024/02/02 12:56:26 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	lstdeallocate(t_struct **root)
+void	ft_putstr_c(char *s, int *ptr_sum)
 {
-	t_struct	*curr;
-	t_struct	*next;
-
-	curr = *root;
-	while (curr != NULL)
+	if (s == NULL)
 	{
-		next = curr->next;
-		free(curr);
-		curr = next;
+		ft_putstr_c("(null)", ptr_sum);
+		return ;
 	}
-	*root = NULL;
-	return ;
+	while (*s)
+		ft_putchar_c(*s++, ptr_sum);
 }

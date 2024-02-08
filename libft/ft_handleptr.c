@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_handleptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:19 by shoudek          ###   ########.fr       */
+/*   Created: 2024/01/23 13:43:29 by shoudek           #+#    #+#             */
+/*   Updated: 2024/02/02 12:58:20 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_swap(void)
+void	ft_handleptr(uintptr_t num, const char *format, int *ptr_sum)
 {
-	t_struct	*node_a;
-	t_struct	*node_b;
-
-	node_a = NULL;
-	ft_lstadd_start(&node_a, 2);
-	while (node_a != NULL)
+	if (num == 0)
 	{
-		printf("%d\n", node_a->x);
-		node_a = node_a->next;
+		ft_putstr_c("(nil)", ptr_sum);
+		return ;
 	}
-	return ;
-}
-
-int	main(void)
-{
-	push_swap();
+	ft_putstr_c("0x", ptr_sum);
+	ft_puthex(num, format, ptr_sum);
 }

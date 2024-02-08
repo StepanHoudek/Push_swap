@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_end.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:19 by shoudek          ###   ########.fr       */
+/*   Created: 2024/02/08 13:14:21 by shoudek           #+#    #+#             */
+/*   Updated: 2024/02/08 14:57:04 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_swap(void)
+void	ft_lstadd_end(t_struct **root, int value)
 {
-	t_struct	*node_a;
-	t_struct	*node_b;
+	t_struct	*new_node;
+	t_struct	*curr;
 
-	node_a = NULL;
-	ft_lstadd_start(&node_a, 2);
-	while (node_a != NULL)
+	new_node = malloc(sizeof(t_struct));
+	if (!new_node)
+		return ;
+	new_node->x = value;
+	new_node->next = NULL;
+	if (*root == NULL)
 	{
-		printf("%d\n", node_a->x);
-		node_a = node_a->next;
+		*root = new_node;
+		return ;
 	}
+	curr = *root;
+	while (curr->next != NULL)
+		curr = curr->next;
+	curr->next = new_node;
 	return ;
-}
-
-int	main(void)
-{
-	push_swap();
 }

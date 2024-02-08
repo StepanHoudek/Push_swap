@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:19 by shoudek          ###   ########.fr       */
+/*   Created: 2023/11/02 12:34:31 by shoudek           #+#    #+#             */
+/*   Updated: 2024/01/18 09:54:53 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_swap(void)
+int	ft_isdigit(int c)
 {
-	t_struct	*node_a;
-	t_struct	*node_b;
-
-	node_a = NULL;
-	ft_lstadd_start(&node_a, 2);
-	while (node_a != NULL)
-	{
-		printf("%d\n", node_a->x);
-		node_a = node_a->next;
-	}
-	return ;
+	if ((c >= '0' && c <= '9'))
+		return (1);
+	else
+		return (0);
 }
+
+/*
+#include <stdio.h>
 
 int	main(void)
 {
-	push_swap();
+	char	c;
+
+	c = 'C';
+	printf("%d", ft_isalpha(c));
 }
+*/

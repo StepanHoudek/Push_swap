@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:19 by shoudek          ###   ########.fr       */
+/*   Created: 2023/11/02 12:52:40 by shoudek           #+#    #+#             */
+/*   Updated: 2024/01/08 14:48:46 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_swap(void)
+size_t	ft_strlen(const char *s)
 {
-	t_struct	*node_a;
-	t_struct	*node_b;
+	size_t	size;
 
-	node_a = NULL;
-	ft_lstadd_start(&node_a, 2);
-	while (node_a != NULL)
+	size = 0;
+	while (*s)
 	{
-		printf("%d\n", node_a->x);
-		node_a = node_a->next;
+		size++;
+		s++;
 	}
-	return ;
+	return (size);
 }
+
+/*
+#include <stdio.h>
 
 int	main(void)
 {
-	push_swap();
+	printf("%ld", ft_strlen("hey"));
 }
+*/

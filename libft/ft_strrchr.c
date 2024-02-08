@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:19 by shoudek          ###   ########.fr       */
+/*   Created: 2024/01/03 11:55:46 by shoudek           #+#    #+#             */
+/*   Updated: 2024/01/16 10:29:59 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_swap(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	t_struct	*node_a;
-	t_struct	*node_b;
+	int	j;
 
-	node_a = NULL;
-	ft_lstadd_start(&node_a, 2);
-	while (node_a != NULL)
+	j = ft_strlen(s);
+	while (j >= 0)
 	{
-		printf("%d\n", node_a->x);
-		node_a = node_a->next;
+		if (s[j] == (unsigned char)c)
+			return ((char *)&s[j]);
+		j--;
 	}
-	return ;
+	return (0);
 }
+
+/*
+#include <stdio.h>
 
 int	main(void)
 {
-	push_swap();
+	printf("%s", ft_strrchr("ahojssj", '\0'));
 }
+
+*/

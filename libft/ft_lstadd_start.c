@@ -6,16 +6,15 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:17:00 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 14:34:20 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/08 15:03:47 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	lstadd_start(t_struct **root, int value)
+void	ft_lstadd_start(t_struct **root, int value)
 {
 	t_struct	*new_node;
-	t_struct	*temp;
 
 	new_node = malloc(sizeof(t_struct));
 	if (!new_node)

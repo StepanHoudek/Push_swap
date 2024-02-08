@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:11:19 by shoudek          ###   ########.fr       */
+/*   Created: 2024/01/03 12:09:01 by shoudek           #+#    #+#             */
+/*   Updated: 2024/01/18 09:53:11 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-void	push_swap(void)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_struct	*node_a;
-	t_struct	*node_b;
+	size_t	j;
 
-	node_a = NULL;
-	ft_lstadd_start(&node_a, 2);
-	while (node_a != NULL)
+	j = 0;
+	while (j < n)
 	{
-		printf("%d\n", node_a->x);
-		node_a = node_a->next;
+		if (((unsigned char *)s)[j] == (unsigned char)c)
+			return ((void *)(s + j));
+		j++;
 	}
-	return ;
+	return (0);
 }
+
+/*
+#include <stdio.h>
 
 int	main(void)
 {
-	push_swap();
+	printf("%p", ft_memchr("ahoj", 'h', 5));
 }
+*/
