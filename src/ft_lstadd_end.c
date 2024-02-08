@@ -6,18 +6,18 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:14:21 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 13:27:36 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/08 14:34:20 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	lstadd_end(t_list **root, int value)
+void	lstadd_end(t_struct **root, int value)
 {
-	t_list	*new_node;
-	t_list	*curr;
+	t_struct	*new_node;
+	t_struct	*curr;
 
-	new_node = malloc(sizeof(t_list));
+	new_node = malloc(sizeof(t_struct));
 	if (!new_node)
 		return ;
 	new_node->x = value;

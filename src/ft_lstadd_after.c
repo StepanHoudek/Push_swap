@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_to_binary.c                                     :+:      :+:    :+:   */
+/*   ft_lstadd_after.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 14:49:07 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 14:13:50 by shoudek          ###   ########.fr       */
+/*   Created: 2024/02/08 13:17:32 by shoudek           #+#    #+#             */
+/*   Updated: 2024/02/08 14:34:20 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	ft_to_binary(unsigned int num)
+void	lstadd_after(t_struct *node, int value)
 {
-	if (num < 2)
-		ft_putnbr_fd(num, 1);
-	else
+	t_struct	*new_node;
+
+	new_node = malloc(sizeof(t_struct));
+	if (!new_node)
+		return ;
+	new_node->x = value;
+	new_node->next = NULL;
+	if (node == NULL)
 	{
-		ft_to_binary(num / 2);
-		ft_to_binary(num - ((num / 2) * 2));
+		node = new_node;
+		return ;
 	}
+	new_node->next = node->next;
+	node->next = new_node;
+	return ;
 }
