@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:14:50 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 16:44:09 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/09 12:07:39 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_struct
 	int				x;
 	struct s_struct	*next;
 	struct s_struct	*prev;
+	int				price;
 }					t_struct;
 
 void				ft_bzero(void *s, size_t n);
