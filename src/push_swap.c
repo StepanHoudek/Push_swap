@@ -6,25 +6,47 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/09 10:11:03 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/09 14:06:13 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	pb(t_struct **head_a, t_struct **head_b)
+void	pa_pb(t_struct **head_a, t_struct **head_b, t_struct **tail_b)
 {
-	(*head_a)->prev->next = NULL;
-	(*head_a)->prev = *head_b;
-	(*head_b)->next = *head_a;
+	t_struct	*temp;
+
+	if (*head_a == NULL)
+		return ;
+	temp = (*head_a)->prev;
+	if ((*head_b) == NULL)
+	{
+		*head_b = *head_a;
+		*tail_b = *head_a;
+		(*head_b)->prev = NULL;
+	}
+	else
+	{
+		(*head_a)->prev = (*head_b);
+		(*head_b)->next = (*head_a);
+		*head_b = *head_a;
+	}
+	(*head_a) = temp;
+	(*head_a)->next = NULL;
 	return ;
 }
 
-void	ra(t_struct **tail_a, t_struct **head_a)
+void	ra_rb(t_struct **tail, t_struct **head)
 {
-	(*tail_a)->prev = *head_a;
-	(*tail_a)->next = NULL;
-	(*head_a)->next = *tail_a;
+	t_struct	*temp_head;
+
+	temp_head = *head;
+	(*tail) = (*tail)->next;
+	*head = (*tail)->prev;
+	(*tail)->prev = NULL;
+	(*head)->next = NULL;
+	(*head)->prev = temp_head;
+	temp_head->next = (*head);
 	return ;
 }
 
@@ -37,6 +59,7 @@ void	push_swap(void)
 	t_struct	*curr;
 
 	tail_a = NULL;
+	head_b = NULL;
 	// init stack A
 	ft_dublstinit(&tail_a, &head_a, 3);
 	ft_dublstadd_start(&tail_a, 8); // 8
@@ -44,42 +67,62 @@ void	push_swap(void)
 	ft_dublstadd_start(&tail_a, 9);
 	// print stack_a
 	printf("Stack A:\n");
-	curr = tail_a;
+	curr = head_a;
 	while (curr != NULL)
 	{
 		printf("%d\n", curr->x);
-		curr = curr->next;
+		curr = curr->prev;
 	}
 	// rotate stack A
-	ra(&tail_a, )
-	// init stack B
-	ft_dublstinit(&tail_b, &head_b, 6);
-	printf("Stack B:\n");
-	curr = tail_b;
+	ra_rb(&tail_a, &head_a);
+	// print stack_a
+	printf("Stack A:\n");
+	curr = head_a;
 	while (curr != NULL)
 	{
 		printf("%d\n", curr->x);
-		curr = curr->next;
+		curr = curr->prev;
+				
 	}
 	// push two numbers to stack_b
-	pb(&head_a, &head_b);
+	pa_pb(&head_a, &head_b, &tail_b);
 	// print stack_b
 	printf("Stack B:\n");
-	curr = tail_b;
+	curr = head_b;
 	while (curr != NULL)
 	{
 		printf("%d\n", curr->x);
-		curr = curr->next;
+		curr = curr->prev;
+		
 	}
 	// print stack_a
 	printf("Stack A:\n");
-	curr = tail_a;
+	curr = head_a;
 	while (curr != NULL)
 	{
 		printf("%d\n", curr->x);
-		curr = curr->next;
+		curr = curr->prev;
+		
 	}
-	// free()
+	pa_pb(&head_a, &head_b, &tail_b);
+	// print stack_b
+	printf("Stack B:\n");
+	curr = head_b;
+	while (curr != NULL)
+	{
+		printf("%d\n", curr->x);
+		curr = curr->prev;
+		sleep(1);
+		////// !!!
+	}
+	// print stack_a
+	printf("Stack A:\n");
+	curr = head_a;
+	while (curr != NULL)
+	{
+		printf("%d\n", curr->x);
+		curr = curr->prev;
+	}
 	ft_dublstdeallocate(&tail_a, &head_a);
 	ft_dublstdeallocate(&tail_b, &head_b);
 	return ;
