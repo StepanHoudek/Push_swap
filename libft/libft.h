@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:14:50 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:03:53 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/08 16:44:09 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_struct
 {
 	int				x;
 	struct s_struct	*next;
+	struct s_struct	*prev;
 }					t_struct;
 
 void				ft_bzero(void *s, size_t n);
@@ -74,5 +75,8 @@ void				ft_lstadd_after(t_struct *node, int value);
 void				ft_lstadd_end(t_struct **root, int value);
 void				ft_lstadd_start(t_struct **root, int value);
 void				ft_lstdeallocate(t_struct **root);
-
+void				ft_dublstinit(t_struct **tail, t_struct **head, int value);
+void				ft_dublstadd_end(t_struct **head, int value);
+void				ft_dublstadd_start(t_struct **tail, int value);
+void				ft_dublstdeallocate(t_struct **tail, t_struct **head);
 #endif

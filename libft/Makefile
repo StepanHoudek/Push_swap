@@ -6,7 +6,7 @@
 #    By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/25 16:35:47 by shoudek           #+#    #+#              #
-#    Updated: 2024/02/08 15:03:30 by shoudek          ###   ########.fr        #
+#    Updated: 2024/02/08 16:45:00 by shoudek          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCS	:=	ft_bzero.c ft_isalpha.c ft_isalnum.c ft_isascii.c ft_isdigit.c ft_isprin
 				ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
 				ft_putendl_fd.c ft_putnbr_fd.c ft_putchar_c.c ft_puthex.c ft_putnbr_c.c ft_putstr_c.c ft_putunsnbr.c \
 				ft_format.c ft_handleptr.c ft_printf.c ft_to_binary.c ft_lstadd_after.c ft_lstadd_end.c ft_lstadd_start.c \
-				ft_lstdeallocate.c
+				ft_lstdeallocate.c ft_dublstdeallocate.c ft_dublstadd_start.c ft_dublstadd_end.c ft_dublstinit.c
 OBJS	:=	$(SRCS:.c=.o)
 
 all:		$(NAME)
