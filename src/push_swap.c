@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/13 10:23:50 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:27:02 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	pa_pb(t_struct **head_a, t_struct **head_b, t_struct **tail_b)
 }
 
 // rotate stack
-void	ra_rb(t_struct **tail, t_struct **head)
+void	rra_rrb(t_struct **tail, t_struct **head)
 {
 	t_struct	*temp_head;
 
@@ -56,10 +56,10 @@ void	ra_rb(t_struct **tail, t_struct **head)
 	return ;
 }
 
-void	rr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
+void	rrr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
 {
-	ra_rb(t_a, h_a);
-	ra_rb(t_b, h_b);
+	rra_rrb(t_a, h_a);
+	rra_rrb(t_b, h_b);
 }
 
 // swap the first 2 elements at the top of stack
@@ -91,7 +91,7 @@ void	sa_sb(t_struct **tail, t_struct **head)
 	return ;
 }
 
-void	rra_rrb(t_struct **tail, t_struct **head)
+void	ra_rb(t_struct **tail, t_struct **head)
 {
 	t_struct	*temp_tail;
 
@@ -105,19 +105,39 @@ void	rra_rrb(t_struct **tail, t_struct **head)
 	return ;
 }
 
-void	rrr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
+void	rr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
 {
-	rra_rrb(t_a, h_a);
-	rra_rrb(t_b, h_b);
+	ra_rb(t_a, h_a);
+	ra_rb(t_b, h_b);
 	return ;
 }
 
-void	calc_price(t_struct *h_a, t_struct *t_a, t_struct *h_b, t_struct *t_b)
+void	calc_price(t_struct *t_a, t_struct *h_a, t_struct *t_b, t_struct *h_b)
 {
 	if (h_a->x > h_b->x)
 		h_a->price = 1;
 	return ;
 }
+
+void	ft_sort_three(t_struct **t_a, t_struct **h_a)
+{
+	if ((*h_a)->x == ft_lstmin(*h_a) && (*t_a)->x == ft_lstmax(*h_a))
+		return ;
+	if ((*h_a)->x == ft_lstmin(*h_a))
+	{
+		sa_sb(t_a, h_a);
+		ft_sort_three(t_a, h_a);
+	}
+	else if ((*h_a)->x == ft_lstmax(*h_a))
+	{
+		ra_rb(t_a, h_a);
+		ft_sort_three(t_a, h_a);
+	}
+	else
+		sa_sb(t_a, h_a);
+	return ;
+}
+
 
 void	push_swap(void)
 {
@@ -130,13 +150,23 @@ void	push_swap(void)
 	tail_a = NULL;
 	head_b = NULL;
 	// init stack A
-	ft_dublstinit(&tail_a, &head_a, 3);
+	ft_dublstinit(&tail_a, &head_a, 7);
 	// push numbers to stack A
-	ft_dublstadd_start(&tail_a, 8);
-	ft_dublstadd_start(&tail_a, 4);
-	ft_dublstadd_start(&tail_a, 9);
-	//print stack_a from head to tail
+	ft_dublstadd_end(&head_a, 2);
+	ft_dublstadd_end(&head_a, 1);
+	//ft_dublstadd_end(&head_a, 8);
+	// print stack_a from head to tail
 	printf("Stack A original:\n");
+	curr = head_a;
+	while (curr != NULL)
+	{
+		printf("%d\n", curr->x);
+		curr = curr->prev;
+	}
+	//ra_rb(&tail_a, &head_a);
+	ft_sort_three(&tail_a, &head_a);
+	// print stack_a from head to tail
+	printf("Stack A three sorted:\n");
 	curr = head_a;
 	while (curr != NULL)
 	{

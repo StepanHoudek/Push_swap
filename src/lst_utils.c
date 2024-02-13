@@ -1,23 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/08 14:07:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/13 12:31:21 by shoudek          ###   ########.fr       */
+/*   Created: 2024/02/13 10:49:51 by shoudek           #+#    #+#             */
+/*   Updated: 2024/02/13 13:04:23 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "../libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
+int	ft_lstmin(t_struct *head)
+{
+	int	min;
 
-int	ft_lstmin(t_struct *head);
-int	ft_lstmax(t_struct *head);
+	min = head->x;
+	while (head != NULL)
+	{
+		if (head->x < min)
+			min = head->x;
+		head = head->prev;
+	}
+	return (min);
+}
 
-#endif
+int	ft_lstmax(t_struct *head)
+{
+	int	max;
+
+	max = head->x;
+	while (head != NULL)
+	{
+		if (head->x > max)
+			max = head->x;
+		head = head->prev;
+	}
+	return (max);
+}
+
+int	ft_lstsize(t_struct *stack)
+{
+	return (0);
+}
