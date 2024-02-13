@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/13 13:27:02 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:46:40 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,26 @@ void	push_swap(void)
 	t_struct	*tail_b;
 	t_struct	*head_b;
 	t_struct	*curr;
+
+	// only two elements in A?
+	if (ft_lstsize(head_a) == 2)
+	{
+		if (head_a->x > tail_a->x)
+		{
+			sa_sb(&tail_a, &head_a);
+			ft_printf("%s", "sa");
+		}
+	}
+	// only three elements in A?
+	if (ft_lstsize(head_a) == 3)
+
+
+
+
+
+
+
+
 
 	tail_a = NULL;
 	head_b = NULL;
