@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:49:51 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/13 13:04:23 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:45:02 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,15 @@ int	ft_lstmax(t_struct *head)
 	return (max);
 }
 
-int	ft_lstsize(t_struct *stack)
+int	ft_lstsize(t_struct *head)
 {
-	return (0);
+	int	size;
+
+	size = 0;
+	while (head != NULL)
+	{
+		size++;
+		head = head->prev;
+	}
+	return (size);
 }
