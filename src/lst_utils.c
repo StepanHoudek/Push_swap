@@ -6,13 +6,13 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:49:51 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 11:25:15 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:06:03 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_lstmin(t_struct *head)
+int	ft_lstmin(t_str *head)
 {
 	int	min;
 
@@ -26,7 +26,7 @@ int	ft_lstmin(t_struct *head)
 	return (min);
 }
 
-int	ft_lstmax(t_struct *head)
+int	ft_lstmax(t_str *head)
 {
 	int	max;
 
@@ -40,7 +40,7 @@ int	ft_lstmax(t_struct *head)
 	return (max);
 }
 
-int	ft_lstsize(t_struct *head)
+int	ft_lstsize(t_str *head)
 {
 	int	size;
 
@@ -53,7 +53,7 @@ int	ft_lstsize(t_struct *head)
 	return (size);
 }
 
-int	ft_lstpricer(t_struct *node, t_struct *head)
+int	ft_lstpricer(t_str *node, t_str *head)
 {
 	int	r_count;
 
@@ -66,7 +66,7 @@ int	ft_lstpricer(t_struct *node, t_struct *head)
 	return (r_count);
 }
 
-int	ft_lstpricerr(t_struct *node, t_struct *tail)
+int	ft_lstpricerr(t_str *node, t_str *tail)
 {
 	int	rr_count;
 
@@ -79,20 +79,12 @@ int	ft_lstpricerr(t_struct *node, t_struct *tail)
 	return (rr_count);
 }
 
-t_struct	*ft_lstfindfit(t_struct *node, t_struct *head)
+t_str	*ft_lstfindfit(t_str *node, t_str *head)
 {
-	t_struct	*curr;
+	t_str	*curr;
 
 	curr = head;
 	while (node->x < curr->x)
 		curr = curr->prev;
 	return (curr);
-}
-
-void	ft_lstpushprice(t_struct *node)
-{
-	if (node->r_price < node->rr_price)
-		node->node_price = node->r_price;
-	else
-		node->node_price = node->rr_price;
 }

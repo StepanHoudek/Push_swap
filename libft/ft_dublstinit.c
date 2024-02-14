@@ -6,17 +6,17 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:41:05 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 09:35:04 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 13:55:29 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dublstinit(t_struct **tail, t_struct **head, int value)
+void	ft_dublstinit(t_str **tail, t_str **head, int value)
 {
-	t_struct	*new_node;
+	t_str	*new_node;
 
-	new_node = malloc(sizeof(t_struct));
+	new_node = malloc(sizeof(t_str));
 	if (new_node == NULL)
 		return ;
 	new_node->x = value;

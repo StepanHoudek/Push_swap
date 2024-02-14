@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:14:50 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 11:26:59 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:29:13 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ typedef struct s_struct
 	struct s_struct	*prev;
 	int				r_price;
 	int				rr_price;
-	struct s_struct	*node_b;
-	int				push_price;
-}					t_struct;
+	int				ttl_price;
+}					t_str;
 
 void				ft_bzero(void *s, size_t n);
 int					ft_isalpha(int c);
@@ -75,12 +74,13 @@ void				ft_handleptr(uintptr_t num, const char *format,
 						int *ptr_sum);
 int					ft_printf(const char *format, ...);
 void				ft_to_binary(unsigned int num);
-void				ft_lstadd_after(t_struct *node, int value);
-void				ft_lstadd_end(t_struct **root, int value);
-void				ft_lstadd_start(t_struct **root, int value);
-void				ft_lstdeallocate(t_struct **root);
-void				ft_dublstinit(t_struct **tail, t_struct **head, int value);
-void				ft_dublstadd_end(t_struct **head, int value);
-void				ft_dublstadd_start(t_struct **tail, int value);
-void				ft_dublstdeallocate(t_struct **tail, t_struct **head);
+void				ft_lstadd_after(t_str *node, int value);
+void				ft_lstadd_end(t_str **root, int value);
+void				ft_lstadd_start(t_pair **root, t_str *node_a,
+						t_str *node_b);
+void				ft_lstdeallocate(t_str **root);
+void				ft_dublstinit(t_str **tail, t_str **head, int value);
+void				ft_dublstadd_end(t_str **head, int value);
+void				ft_dublstadd_start(t_str **tail, int value);
+void				ft_dublstdeallocate(t_str **tail, t_str **head);
 #endif

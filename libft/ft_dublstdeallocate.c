@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dublistdeallocate.c                             :+:      :+:    :+:   */
+/*   ft_dublstdeallocate.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 16:39:28 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 16:43:08 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 13:55:29 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_dublstdeallocate(t_struct **tail, t_struct **head)
+void	ft_dublstdeallocate(t_str **tail, t_str **head)
 {
-	t_struct	*curr;
+	t_str	*curr;
 
 	if (*tail == NULL)
 		return ;
