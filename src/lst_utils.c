@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shoudek <shoudek@student.42prague.com>     +#+  +:+       +#+        */
+/*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:49:51 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/13 16:45:02 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 11:25:15 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,48 @@ int	ft_lstsize(t_struct *head)
 		head = head->prev;
 	}
 	return (size);
+}
+
+int	ft_lstpricer(t_struct *node, t_struct *head)
+{
+	int	r_count;
+
+	r_count = 0;
+	while (node != head)
+	{
+		r_count++;
+		node = node->next;
+	}
+	return (r_count);
+}
+
+int	ft_lstpricerr(t_struct *node, t_struct *tail)
+{
+	int	rr_count;
+
+	rr_count = 1;
+	while (node != tail)
+	{
+		rr_count++;
+		node = node->prev;
+	}
+	return (rr_count);
+}
+
+t_struct	*ft_lstfindfit(t_struct *node, t_struct *head)
+{
+	t_struct	*curr;
+
+	curr = head;
+	while (node->x < curr->x)
+		curr = curr->prev;
+	return (curr);
+}
+
+void	ft_lstpushprice(t_struct *node)
+{
+	if (node->r_price < node->rr_price)
+		node->node_price = node->r_price;
+	else
+		node->node_price = node->rr_price;
 }
