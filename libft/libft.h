@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:14:50 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 14:36:58 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:38:48 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_struct
 	int				x;
 	struct s_struct	*next;
 	struct s_struct	*prev;
+	struct s_struct	*node_b;
 	int				r_price;
 	int				rr_price;
 	int				ttl_price;

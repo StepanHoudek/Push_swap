@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 14:27:56 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:39:23 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,14 +186,14 @@ void	ft_sort_three_a(t_str **t_a, t_str **h_a)
 	return ;
 }
 
-void	calculate_price(t_str *node, t_str *tail, t_str *head)
+void	calculate_node_price(t_str *node, t_str *tail, t_str *head)
 {
 	node->r_price = ft_lstpricer(node, head);
 	node->rr_price = ft_lstpricerr(node, tail);
 	return ;
 }
 
-void	calculate_ttl_price(t_str *node_a, t_str *node_b)
+void	calculate_ttl_node_price(t_str *node_a, t_str *node_b)
 {
 	int	price;
 
@@ -210,6 +210,84 @@ void	calculate_ttl_price(t_str *node_a, t_str *node_b)
 	return ;
 }
 
+void	calculate_stack_price(t_str *t_a, t_str *h_a, t_str *t_b, t_str *h_b)
+{
+	t_str	*curr_a;
+	t_str	*curr_b;
+	t_str	*cheapest;
+
+	curr_a = h_a;
+	while (curr_a != NULL)
+	{
+		// element on top of A and element biggest in B?
+		if (curr_a == h_a && curr_a->x >= ft_lstmax(h_b))
+		{
+			curr_a = curr_a->prev;
+			pb(&h_a, &h_b, &t_b);
+			continue ;
+		}
+		// element on top of A and element smallest in B?
+		if (curr_a == h_a && curr_a->x <= ft_lstmin(h_b))
+		{
+			curr_a = curr_a->prev;
+			pb(&h_a, &h_b, &t_b);
+			rb(&t_b, &h_b);
+			continue ;
+		}
+		// Look for a node in B from head after which element fits
+		curr_a->node_b = ft_lstfindfit(curr_a, h_b);
+		// calculate A element
+		calculate_node_price(curr_a, t_a, h_a);
+		// calculate B node
+		calculate_node_price(curr_a->node_b, t_b, h_b);
+		// calculate total lowest price for pushing the element
+		calculate_ttl_node_price(curr_a, curr_a->node_b);
+		// then operate
+		curr_a = curr_a->prev;
+	}
+}
+
+// void	operate(t_str *node_a, t_str *node_b)
+// {
+// 	t_str	*cheapest;
+// 	// choose the element with the lowest price
+// 	cheapest = ft_findlowestprice(h_a);
+// 	// perform operations on A
+// 	if (curr_a->r_price > curr_a->rr_price)
+// 	{
+// 		while (curr_a->rr_price--)
+// 			rra(&t_a, &h_a);
+// 	}
+// 	else
+// 	{
+// 		while (curr_a->r_price--)
+// 			ra(&t_a, &h_a);
+// 	}
+// 	// perform operations on B
+// 	if (curr_b->r_price > curr_b->rr_price)
+// 	{
+// 		while (curr_b->rr_price--)
+// 			rrb(&t_b, &h_b);
+// 	}
+// 	else
+// 	{
+// 		while (curr_b->r_price--)
+// 			rb(&t_b, &h_b);
+// 	}
+// 	pb (&h_a, &h_b, &t_b);
+// }
+
+void	print_stack(t_str *head)
+{
+	while (head != NULL)
+	{
+		ft_printf("Val: %d | ttl: %d | rr: %d | r: %d\n", head->x,
+			head->ttl_price, head->rr_price, head->r_price);
+		head = head->prev;
+	}
+	return ;
+}
+
 void	push_swap(void)
 {
 	t_str	*tail_a;
@@ -218,23 +296,22 @@ void	push_swap(void)
 	t_str	*head_b;
 	t_str	*curr_a;
 	t_str	*curr_b;
-	t_pair		*root;
+	t_str	*cheapest;
 
-	root = NULL;
 	head_b = NULL;
 	// init stack A
-	ft_dublstinit(&tail_a, &head_a, 7);
-	ft_dublstadd_end(&head_a, 5);
+	ft_dublstinit(&tail_a, &head_a, 4);
+	ft_dublstadd_end(&head_a, 2);
+	ft_dublstadd_end(&head_a, 3);
+	ft_dublstadd_end(&head_a, 1);
+	ft_dublstadd_end(&head_a, 100);
 	ft_dublstadd_end(&head_a, 200);
-	ft_dublstadd_end(&head_a, 4);
+	print_stack(head_a);
 	// only two elements in A?
 	if (ft_lstsize(head_a) == 2)
 	{
 		if (head_a->x > tail_a->x)
-		{
-			sa_sb(&tail_a, &head_a);
-			ft_printf("%s", "sa");
-		}
+			sa(&tail_a, &head_a);
 		return ;
 	}
 	// only three elements in A?
@@ -246,110 +323,20 @@ void	push_swap(void)
 	// PB 2*
 	pb(&head_a, &head_b, &tail_b);
 	pb(&head_a, &head_b, &tail_b);
+	printf("Stack A: \n");
+	print_stack(head_a);
+	printf("Stack B: \n");
+	print_stack(head_b);
 	if (head_b->x < tail_b->x)
 		sb(&tail_b, &head_b);
-	// calculate A
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		// element on top of A and element biggest in B?
-		if (curr_a == head_a && curr_a->x >= ft_lstmax(head_b))
-		{
-			pb(&head_a, &head_b, &tail_b);
-			curr_a = curr_a->prev;
-			continue ;
-		}
-		// element on top of A and element smallest in B?
-		if (curr_a == head_a && curr_a->x <= ft_lstmin(head_b))
-		{
-			pb(&head_a, &head_b, &tail_b);
-			rb(&tail_b, &head_b);
-			curr_a = curr_a->prev;
-			continue ;
-		}
-		// Look for a node in B from head after which element fits
-		curr_b = ft_lstfindfit(curr_a, head_b);
-		// calculate A element
-		calculate_price(curr_a, tail_a, head_a);
-		// calculate B node	
-		calculate_price(curr_b, tail_b, head_b);
-		// calculate total lowest price for pushing the element
-		calculate_ttl_price(curr_a, curr_b);
-		curr_a = curr_a->prev;
-	}
-	return ;
-	tail_a = NULL;
-	// ft_dublstadd_end(&head_a, 8);
-	// print stack_a from head to tail
-	printf("Stack A original:\n");
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	// ra_rb(&tail_a, &head_a);
-	ft_sort_three_a(&tail_a, &head_a);
-	// print stack_a from head to tail
-	printf("Stack A three sorted:\n");
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	sa_sb(&tail_a, &head_a);
-	// print stack_a from head to tail
-	printf("Stack A sa_sb:\n");
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	rra_rrb(&tail_a, &head_a);
-	// print stack_a from head to tail
-	printf("Stack A rra_rrb:\n");
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	ra_rb(&tail_a, &head_a);
-	// print stack_a from head to tail
-	printf("Stack A ra_rb:\n");
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	// push two numbers to stack_b
-	pa_pb(&head_a, &head_b, &tail_b);
-	pa_pb(&head_a, &head_b, &tail_b);
-	// if tail is bigger than head, reverse
-	if (head_b->x < tail_b->x)
-		ra_rb(&tail_b, &head_b);
-	// print stack_b
-	printf("Stack B pa_pb dvakrat:\n");
-	curr_a = head_b;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	// print stack_a
-	printf("Stack A:\n");
-	curr_a = head_a;
-	while (curr_a != NULL)
-	{
-		printf("%d\n", curr_a->x);
-		curr_a = curr_a->prev;
-	}
-	// deallocate both stacks
-	ft_dublstdeallocate(&tail_a, &head_a);
-	ft_dublstdeallocate(&tail_b, &head_b);
+	printf("Stack B: \n");
+	print_stack(head_b);
+	// calculate
+	calculate_stack_price(tail_a, head_a, tail_b, head_b);
+	printf("Stack A: \n");
+	print_stack(head_a);
+	// operate
+	// operate();
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 10:49:51 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 14:06:03 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 16:30:42 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,18 @@ t_str	*ft_lstfindfit(t_str *node, t_str *head)
 	while (node->x < curr->x)
 		curr = curr->prev;
 	return (curr);
+}
+
+t_str	*ft_findlowestprice(t_str *head)
+{
+	t_str	*lowest;
+
+	lowest = head;
+	while (head != NULL)
+	{
+		if (head->ttl_price < lowest->ttl_price)
+			lowest = head;
+		head = head->prev;
+	}
+	return (lowest);
 }
