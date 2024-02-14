@@ -6,16 +6,16 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:06:44 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 11:31:35 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:27:56 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // push from stack to stack
-void	pa_pb(t_struct **head_a, t_struct **head_b, t_struct **tail_b)
+void	pa_pb(t_str **head_a, t_str **head_b, t_str **tail_b)
 {
-	t_struct	*temp;
+	t_str	*temp;
 
 	if (*head_a == NULL)
 		return ;
@@ -37,14 +37,14 @@ void	pa_pb(t_struct **head_a, t_struct **head_b, t_struct **tail_b)
 	return ;
 }
 
-void	pa(t_struct **head_b, t_struct **head_a, t_struct **tail_a)
+void	pa(t_str **head_b, t_str **head_a, t_str **tail_a)
 {
 	pa_pb(head_b, head_a, tail_a);
 	ft_printf("pa\n");
 	return ;
 }
 
-void	pb(t_struct **head_a, t_struct **head_b, t_struct **tail_b)
+void	pb(t_str **head_a, t_str **head_b, t_str **tail_b)
 {
 	pa_pb(head_a, head_b, tail_b);
 	ft_printf("pb\n");
@@ -52,9 +52,9 @@ void	pb(t_struct **head_a, t_struct **head_b, t_struct **tail_b)
 }
 
 // rotate stack
-void	rra_rrb(t_struct **tail, t_struct **head)
+void	rra_rrb(t_str **tail, t_str **head)
 {
-	t_struct	*temp_head;
+	t_str	*temp_head;
 
 	temp_head = *head;
 	(*tail) = (*tail)->next;
@@ -66,21 +66,21 @@ void	rra_rrb(t_struct **tail, t_struct **head)
 	return ;
 }
 
-void	rra(t_struct **tail, t_struct **head)
+void	rra(t_str **tail, t_str **head)
 {
 	rra_rrb(tail, head);
 	ft_printf("rra\n");
 	return ;
 }
 
-void	rrb(t_struct **tail, t_struct **head)
+void	rrb(t_str **tail, t_str **head)
 {
 	rra_rrb(tail, head);
 	ft_printf("rrb\n");
 	return ;
 }
 
-void	rrr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
+void	rrr(t_str **t_a, t_str **h_a, t_str **t_b, t_str **h_b)
 {
 	rra_rrb(t_a, h_a);
 	rra_rrb(t_b, h_b);
@@ -90,9 +90,9 @@ void	rrr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
 
 // swap the first 2 elements at the top of stack
 // do nothing if there's only one or no elements
-void	sa_sb(t_struct **tail, t_struct **head)
+void	sa_sb(t_str **tail, t_str **head)
 {
-	t_struct	*temp_head;
+	t_str	*temp_head;
 
 	if (*tail == *head)
 		return ;
@@ -117,23 +117,23 @@ void	sa_sb(t_struct **tail, t_struct **head)
 	return ;
 }
 
-void	sa(t_struct **tail, t_struct **head)
+void	sa(t_str **tail, t_str **head)
 {
 	sa_sb(tail, head);
 	ft_printf("sa\n");
 	return ;
 }
 
-void	sb(t_struct **tail, t_struct **head)
+void	sb(t_str **tail, t_str **head)
 {
 	sa_sb(tail, head);
 	ft_printf("sb\n");
 	return ;
 }
 
-void	ra_rb(t_struct **tail, t_struct **head)
+void	ra_rb(t_str **tail, t_str **head)
 {
-	t_struct	*temp_tail;
+	t_str	*temp_tail;
 
 	temp_tail = *tail;
 	(*head) = (*head)->prev;
@@ -145,21 +145,21 @@ void	ra_rb(t_struct **tail, t_struct **head)
 	return ;
 }
 
-void	ra(t_struct **tail, t_struct **head)
+void	ra(t_str **tail, t_str **head)
 {
 	ra_rb(tail, head);
 	ft_printf("ra\n");
 	return ;
 }
 
-void	rb(t_struct **tail, t_struct **head)
+void	rb(t_str **tail, t_str **head)
 {
 	ra_rb(tail, head);
 	ft_printf("rb\n");
 	return ;
 }
 
-void	rr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
+void	rr(t_str **t_a, t_str **h_a, t_str **t_b, t_str **h_b)
 {
 	ra_rb(t_a, h_a);
 	ra_rb(t_b, h_b);
@@ -167,7 +167,7 @@ void	rr(t_struct **t_a, t_struct **h_a, t_struct **t_b, t_struct **h_b)
 	return ;
 }
 
-void	ft_sort_three_a(t_struct **t_a, t_struct **h_a)
+void	ft_sort_three_a(t_str **t_a, t_str **h_a)
 {
 	if ((*h_a)->x == ft_lstmin(*h_a) && (*t_a)->x == ft_lstmax(*h_a))
 		return ;
@@ -186,15 +186,41 @@ void	ft_sort_three_a(t_struct **t_a, t_struct **h_a)
 	return ;
 }
 
+void	calculate_price(t_str *node, t_str *tail, t_str *head)
+{
+	node->r_price = ft_lstpricer(node, head);
+	node->rr_price = ft_lstpricerr(node, tail);
+	return ;
+}
+
+void	calculate_ttl_price(t_str *node_a, t_str *node_b)
+{
+	int	price;
+
+	price = 0;
+	if (node_a->r_price < node_a->rr_price)
+		price += node_a->r_price;
+	else
+		price += node_a->rr_price;
+	if (node_b->r_price < node_b->rr_price)
+		price += node_b->r_price;
+	else
+		price += node_b->rr_price;
+	node_a->ttl_price = price;
+	return ;
+}
+
 void	push_swap(void)
 {
-	t_struct	*tail_a;
-	t_struct	*head_a;
-	t_struct	*tail_b;
-	t_struct	*head_b;
-	t_struct	*curr_a;
-	t_struct	*curr_b;
+	t_str	*tail_a;
+	t_str	*head_a;
+	t_str	*tail_b;
+	t_str	*head_b;
+	t_str	*curr_a;
+	t_str	*curr_b;
+	t_pair		*root;
 
+	root = NULL;
 	head_b = NULL;
 	// init stack A
 	ft_dublstinit(&tail_a, &head_a, 7);
@@ -226,70 +252,32 @@ void	push_swap(void)
 	curr_a = head_a;
 	while (curr_a != NULL)
 	{
-		// element on top of A?
-		if (curr_a != head_a)
-		{
-			curr_a->r_price = ft_lstpricer(curr_a, head_a);
-			curr_a->rr_price = ft_lstpricerr(curr_a, tail_a);
-		}
-		// element biggest in B?
-		if (curr_a->x >= ft_lstmax(head_b))
+		// element on top of A and element biggest in B?
+		if (curr_a == head_a && curr_a->x >= ft_lstmax(head_b))
 		{
 			pb(&head_a, &head_b, &tail_b);
 			curr_a = curr_a->prev;
 			continue ;
 		}
-		// element smallest in B?
-		if (curr_a->x <= ft_lstmin(head_b))
+		// element on top of A and element smallest in B?
+		if (curr_a == head_a && curr_a->x <= ft_lstmin(head_b))
 		{
 			pb(&head_a, &head_b, &tail_b);
+			rb(&tail_b, &head_b);
 			curr_a = curr_a->prev;
 			continue ;
 		}
 		// Look for a node in B from head after which element fits
-		curr_a->node_b = ft_lstfindfit(curr_a, head_b);
-		// count of RB
-		curr_a->node_b->r_price = ft_lstpricer(curr_a->node_b, head_b);
-		// count of RRB
-		curr_a->node_b->rr_price = ft_lstpricerr(curr_a->node_b, tail_b);
+		curr_b = ft_lstfindfit(curr_a, head_b);
+		// calculate A element
+		calculate_price(curr_a, tail_a, head_a);
+		// calculate B node	
+		calculate_price(curr_b, tail_b, head_b);
 		// calculate total lowest price for pushing the element
-		
-
+		calculate_ttl_price(curr_a, curr_b);
 		curr_a = curr_a->prev;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	return ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	tail_a = NULL;
 	// ft_dublstadd_end(&head_a, 8);
 	// print stack_a from head to tail
