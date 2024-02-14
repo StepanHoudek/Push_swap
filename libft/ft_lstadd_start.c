@@ -6,15 +6,15 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 13:17:00 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/08 15:03:47 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:36:41 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_start(t_struct **root, int value)
+void	ft_lstadd_start(t_str **root, int value)
 {
-	t_struct	*new_node;
+	t_str	*new_node;
 
 	new_node = malloc(sizeof(t_struct));
 	if (!new_node)

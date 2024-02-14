@@ -6,7 +6,7 @@
 /*   By: shoudek <shoudek@student.42.cz>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:14:50 by shoudek           #+#    #+#             */
-/*   Updated: 2024/02/14 14:29:13 by shoudek          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:36:58 by shoudek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,7 @@ int					ft_printf(const char *format, ...);
 void				ft_to_binary(unsigned int num);
 void				ft_lstadd_after(t_str *node, int value);
 void				ft_lstadd_end(t_str **root, int value);
-void				ft_lstadd_start(t_pair **root, t_str *node_a,
-						t_str *node_b);
+void				ft_lstadd_start(t_str **root, int value);
 void				ft_lstdeallocate(t_str **root);
 void				ft_dublstinit(t_str **tail, t_str **head, int value);
 void				ft_dublstadd_end(t_str **head, int value);
